@@ -71,7 +71,7 @@
     "PYTHONUNBUFFERED": "1",
     "TRADINGVIEW_LOG_LEVEL": "INFO"
   },
-  "image": "ghcr.io/alexbelgium/binance_trading_bot-{arch}",
+  "image": "ghcr.io/Joeslinky/us-binance_trading_bot-{arch}",
   "ingress": true,
   "ingress_stream": true,
   "map": [
@@ -115,6 +115,6 @@
   },
   "slug": "binance-trading-bot",
   "udev": true,
-  "url": "https://github.com/alexbelgium/hassio-addons",
+  "url": "https://github.com/Joeslinky/hassio-addons",
   "version": "0.0.99"
 }
