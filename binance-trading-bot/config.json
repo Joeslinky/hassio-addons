@@ -71,7 +71,7 @@
     "PYTHONUNBUFFERED": "1",
     "TRADINGVIEW_LOG_LEVEL": "INFO"
   },
-  "image": "ghcr.io/joeslinky/us-binance_trading_bot-{arch}",
+  "image": "ghcr.io/joeslinky/us-binance-trading-bot-{arch}",
   "ingress": true,
   "ingress_stream": true,
   "map": [
