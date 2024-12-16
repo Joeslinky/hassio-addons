@@ -33,10 +33,10 @@ ENV FLASK_APP=main.py
 ENV FLASK_ENV=production
 RUN \
     apk add --no-cache --quiet python3 py3-pip curl \
-    && curl -o requirements.txt https://raw.githubusercontent.com/chrisleekr/binance-trading-bot/master/tradingview/requirements.txt \
+    && curl -o requirements.txt https://raw.githubusercontent.com/Joeslinky/us-binance-trading-bot/master/tradingview/requirements.txt \
     && pip install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
-    && curl -o /srv/main.py https://raw.githubusercontent.com/chrisleekr/binance-trading-bot/master/tradingview/main.py
+    && curl -o /srv/main.py https://raw.githubusercontent.com/Joeslinky/us-binance-trading-bot/master/tradingview/main.py
 
 # Installing mongodb
 ENV ME_CONFIG_MONGODB_SERVER=localhost \
@@ -64,14 +64,14 @@ RUN if [ ! -f /bin/sh ] && [ -f /usr/bin/sh ]; then ln -s /usr/bin/sh /bin/sh; f
 ARG MODULES="00-banner.sh 01-custom_script.sh 00-global_var.sh"
 
 # Automatic modules download
-ADD "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_automodules.sh" "/ha_automodules.sh"
+ADD "https://raw.githubusercontent.com/Joeslinky/hassio-addons/master/.templates/ha_automodules.sh" "/ha_automodules.sh"
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
 # Manual apps
 ENV PACKAGES="sudo redis nginx"
 
 # Automatic apps & bashio
-ADD "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_autoapps.sh" "/ha_autoapps.sh"
+ADD "https://raw.githubusercontent.com/Joeslinky/hassio-addons/master/.templates/ha_autoapps.sh" "/ha_autoapps.sh"
 RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
 
 ################
@@ -80,10 +80,10 @@ RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.
 
 # Add entrypoint
 ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
-ADD "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_entrypoint.sh" "/ha_entrypoint.sh"
+ADD "https://raw.githubusercontent.com/Joeslinky/hassio-addons/master/.templates/ha_entrypoint.sh" "/ha_entrypoint.sh"
 
 # Entrypoint modifications
-ADD "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_entrypoint_modif.sh" "/ha_entrypoint_modif.sh"
+ADD "https://raw.githubusercontent.com/Joeslinky/hassio-addons/master/.templates/ha_entrypoint_modif.sh" "/ha_entrypoint_modif.sh"
 RUN chmod 777 /ha_entrypoint.sh /ha_entrypoint_modif.sh && /ha_entrypoint_modif.sh && rm /ha_entrypoint_modif.sh
 
 VOLUME [ "/data" ]
@@ -109,13 +109,13 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="alexbelgium (https://github.com/alexbelgium)" \
+    maintainer="Joeslinky (https://github.com/Joeslinky)" \
     org.opencontainers.image.title="${BUILD_NAME}" \
     org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
     org.opencontainers.image.vendor="Home Assistant Add-ons" \
-    org.opencontainers.image.authors="alexbelgium (https://github.com/alexbelgium)" \
+    org.opencontainers.image.authors="Joeslinky (https://github.com/Joeslinky)" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.url="https://github.com/alexbelgium" \
+    org.opencontainers.image.url="https://github.com/Joeslinky" \
     org.opencontainers.image.source="https://github.com/${BUILD_REPOSITORY}" \
     org.opencontainers.image.documentation="https://github.com/${BUILD_REPOSITORY}/blob/main/README.md" \
     org.opencontainers.image.created=${BUILD_DATE} \
